@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags Optimizados -->
+    <title>Calculadora EBAU / EvAU 2026: Calcula tu Nota de Corte y Selectividad Gratis</title>
+    <meta name="description" content="Calcula online tu nota de acceso y admisión a la universidad gratis. Simula tus notas de bachillerato, fase obligatoria y asignaturas con ponderación 0.2 o 0.1 (Matemáticas, Física, Química, Latín...). ¡Descubre qué nota necesitas!">
+    <meta name="keywords" content="calculadora ebau, calculadora selectividad, nota de corte, calcular evau online, ponderaciones selectividad 2026, nota de admision universidad">
+    <meta name="author" content="Calculadora EBAU">
+    
+    <!-- Open Graph / Redes Sociales (WhatsApp, Twitter) -->
+    <meta property="og:title" content="Calculadora EBAU / EvAU 2026 - Simula tu Nota de Selectividad">
+    <meta property="og:description" content="Calcula tu nota de admisión sobre 14, prueba combinaciones de asignaturas y mira si llegas a la nota de corte de tu carrera.">
+    <meta property="og:type" content="website">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Estilos personalizados adicionales si se requieren */
+        body {
+            background-color: #ffffff;
+            color: #1f2937;
+        }
+    </style>
+</head>
+<body class="bg-white min-h-screen flex flex-col justify-between selection:bg-indigo-500 selection:text-white">
+
+    <!-- ESPACIO PUBLICITARIO SUPERIOR (BANNER) -->
+    <div class="w-full bg-gray-50 border-b border-gray-200 py-3 text-center">
+        <div class="max-w-4xl mx-auto px-4">
+            <div class="border-2 border-dashed border-gray-300 rounded-lg p-2 bg-white text-xs text-gray-400 font-medium">
+                <!-- Zona de Anuncio AdSense Superior -->
+                <span>[ ESPACIO PUBLICITARIO - BANNER SUPERIOR GOOGLE ADSENSE ]</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- HEADER / CABECERA SEO -->
+    <header class="bg-indigo-600 text-white shadow-md py-6 px-4">
+        <div class="max-w-4xl mx-auto text-center">
+            <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Calculadora EBAU / EvAU & Selectividad 2026</h1>
+            <p class="mt-2 text-indigo-100 text-sm sm:text-base">Simula tu nota de acceso, fase general y ponderaciones voluntarias al instante.</p>
+        </div>
+    </header>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="max-w-4xl mx-auto px-4 py-8 flex-grow w-full">
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            
+            <!-- COLUMNA IZQUIERDA: CONFIGURADOR Y DATOS (2 Columnas) -->
+            <div class="md:col-span-2 space-y-6">
+                
+                <!-- BLOQUE 1: NOTA MEDIA DE BACHILLERATO Y FASE OBLIGATORIA -->
+                <div class="bg-white border border-gray-200 p-6 rounded-2xl shadow-sm">
+                    <h2 class="text-lg font-bold text-gray-800 border-b pb-2 mb-4 flex items-center gap-2">
+                        <span class="bg-indigo-100 text-indigo-700 w-7 h-7 rounded-full flex items-center justify-center text-sm">1</span>
+                        Notas Base (Acceso sobre 10)
+                    </h2>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-600 mb-1">Nota Media Bachillerato (NMB - 60%)</label>
+                            <input type="number" id="nmb" step="0.01" min="0" max="10" placeholder="Ej: 8.50" 
+                                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:outline-none text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-600 mb-1">Media Fase Obligatoria / General (40%)</label>
+                            <input type="number" id="faseGeneral" step="0.01" min="0" max="10" placeholder="Ej: 7.80" 
+                                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:outline-none text-sm">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BLOQUE 2: FASE VOLUNTARIA (PONDERACIONES) -->
+                <div class="bg-white border border-gray-200 p-6 rounded-2xl shadow-sm">
+                    <div class="flex justify-between items-center border-b pb-2 mb-4">
+                        <h2 class="text-lg font-bold text-gray-800 flex items-center gap-2">
+                            <span class="bg-indigo-100 text-indigo-700 w-7 h-7 rounded-full flex items-center justify-center text-sm">2</span>
+                            Fase Voluntaria y Ponderaciones (Hasta +4 pts)
+                        </h2>
+                        <button onclick="agregarAsignatura()" class="text-xs bg-indigo-50 text-indigo-600 hover:bg-indigo-100 font-semibold px-3 py-1.5 rounded-lg transition">
+                            + Añadir asignatura
+                        </button>
+                    </div>
+
+                    <p class="text-xs text-gray-500 mb-4">Elige tus asignaturas de modalidad (Matemáticas, Física, Química, Latín, etc.), su ponderación (0.2 o 0.1) y la nota esperada. El sistema elegirá automáticamente las dos mejores.</p>
+
+                    <div id="listaAsignaturas" class="space-y-4">
+                        <!-- Las asignaturas se inyectarán aquí por JavaScript -->
+                    </div>
+                </div>
+
+                <!-- ESPACIO PUBLICITARIO INTERMEDIO -->
+                <div class="w-full bg-gray-50 border border-gray-200 rounded-xl p-3 text-center">
+                    <div class="border-2 border-dashed border-gray-300 rounded-lg p-2 bg-white text-xs text-gray-400 font-medium">
+                        <!-- Zona de Anuncio AdSense Intermedio / Cuadrado -->
+                        <span>[ ESPACIO PUBLICITARIO - ANUNCIO DISPLAY GOOGLE ADSENSE ]</span>
+                    </div>
+                </div>
+
+                <!-- BLOQUE 3: OBJETIVO / NOTA DE CORTE -->
+                <div class="bg-white border border-gray-200 p-6 rounded-2xl shadow-sm">
+                    <h2 class="text-lg font-bold text-gray-800 border-b pb-2 mb-4 flex items-center gap-2">
+                        <span class="bg-indigo-100 text-indigo-700 w-7 h-7 rounded-full flex items-center justify-center text-sm">3</span>
+                        Simulador de Nota de Corte Objetivo
+                    </h2>
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-600 mb-1">Introduce la Nota de Corte de tu carrera deseada (Opcional)</label>
+                        <input type="number" id="notaCorteObjetivo" step="0.001" min="5" max="14" placeholder="Ej: 12.500" 
+                            class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:outline-none text-sm">
+                        <p class="text-xs text-gray-400 mt-1">Te dirá exactamente cuánto margen tienes o qué te falta (Ej: "Si saco un 5 en esta, puedo permitirme un...")</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- COLUMNA DERECHA: RESULTADOS EN TIEMPO REAL (1 Columna) -->
+            <div class="md:col-span-1">
+                <div class="sticky top-6 bg-slate-900 text-white p-6 rounded-2xl shadow-lg space-y-6">
+                    <h2 class="text-xl font-bold border-b border-slate-800 pb-3 text-indigo-300">Tus Resultados</h2>
+                    
+                    <!-- Desglose de notas -->
+                    <div class="space-y-3 text-sm">
+                        <div class="flex justify-between items-center border-b border-slate-800 pb-2">
+                            <span class="text-slate-400">Nota de Acceso (sobre 10):</span>
+                            <span id="resAcceso" class="font-bold text-base">0.000</span>
+                        </div>
+                        <div class="flex justify-between items-center border-b border-slate-800 pb-2">
+                            <span class="text-slate-400">Puntos Voluntarios (max 4):</span>
+                            <span id="resVoluntaria" class="font-bold text-base text-emerald-400">+0.000</span>
+                        </div>
+                    </div>
+
+                    <!-- Nota Final de Admisión -->
+                    <div class="bg-slate-800 p-4 rounded-xl text-center border border-slate-700">
+                        <span class="text-xs text-slate-400 uppercase tracking-wider font-semibold">Nota Final de Admisión</span>
+                        <div id="resFinal" class="text-4xl font-black text-indigo-400 mt-1">0.000</div>
+                        <span class="text-xs text-slate-400">sobre 14 puntos</span>
+                    </div>
+
+                    <!-- Mensaje Dinámico del Objetivo -->
+                    <div id="contenedorObjetivo" class="hidden p-3 rounded-xl text-xs font-medium text-center">
+                        <!-- Mensaje inyectado por JS -->
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <!-- SECCIÓN DE TEXTO SEO (Ayuda a posicionar en Google por contenido relevante) -->
+        <section class="mt-16 border-t border-gray-200 pt-8 text-gray-600 text-sm space-y-4">
+            <h3 class="text-xl font-bold text-gray-800">¿Cómo funciona el cálculo de la nota de admisión a la universidad?</h3>
+            <p>
+                La nota de admisión para la universidad se calcula sobre un máximo de 14 puntos. Se compone de la <strong>nota de acceso</strong> (que vale hasta 10 puntos y combina un 60% la nota media de Bachillerato y un 40% la fase obligatoria de selectividad) y de la <strong>fase voluntaria o de específica</strong> (que suma hasta 4 puntos adicionales multiplicando las notas de tus mejores asignaturas de modalidad por su ponderación de 0.2 o 0.1).
+            </p>
+            <h4 class="font-semibold text-gray-700">Preguntas frecuentes sobre las ponderaciones:</h4>
+            <ul class="list-disc pl-5 space-y-1">
+                <li><strong>¿Qué asignaturas elijo?</strong> Selecciona aquellas materias de modalidad en las que saques mejor nota y que ponderen 0,2 para el grado universitario que te interesa.</li>
+                <li><strong>¿Sirve para cualquier comunidad autónoma?</strong> Sí, la fórmula oficial del Ministerio de Universidades es idéntica en todo el territorio para las pruebas de acceso.</li>
+            </ul>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-100 border-t border-gray-200 py-6 text-center text-xs text-gray-500 mt-12">
+        <p>Calculadora EBAU / EvAU Interactiva. Diseñada para orientar a los estudiantes en el acceso universitario.</p>
+    </footer>
+
+    <!-- JAVASCRIPT DE LA CALCULADORA -->
+    <script>
+        // Catálogo preconfigurado de asignaturas comunes
+        const catalogoAsignaturas = [
+            "Matemáticas II",
+            "Matemáticas Aplicadas a las CC.SS. II",
+            "Física",
+            "Química",
+            "Biología",
+            "Dibujo Técnico II",
+            "Latín II",
+            "Griego II",
+            "Empresa y Diseño de Modelos de Negocio",
+            "Geografía",
+            "Historia del Arte",
+            "Tecnología e Ingeniería II"
+        ];
+
+        // Asignaturas iniciales por defecto para que el usuario empiece con opciones cargadas
+        let misAsignaturas = [
+            { nombre: "Matemáticas II", ponderacion: 0.2, nota: 8 },
+            { nombre: "Física", ponderacion: 0.2, nota: 7 }
+        ];
+
+        const nmbInput = document.getElementById('nmb');
+        const faseGeneralInput = document.getElementById('faseGeneral');
+        const notaCorteObjetivoInput = document.getElementById('notaCorteObjetivo');
+        const listaAsignaturasDiv = document.getElementById('listaAsignaturas');
+        
+        const resAcceso = document.getElementById('resAcceso');
+        const resVoluntaria = document.getElementById('resVoluntaria');
+        const resFinal = document.getElementById('resFinal');
+        const contenedorObjetivo = document.getElementById('contenedorObjetivo');
+
+        function renderizarAsignaturas() {
+            listaAsignaturasDiv.innerHTML = '';
+            misAsignaturas.forEach((asig, index) => {
+                const item = document.createElement('div');
+                item.className = 'bg-gray-50 border border-gray-200 p-4 rounded-xl space-y-3';
+                
+                // Opciones del selector de asignaturas
+                let optionsHtml = catalogoAsignaturas.map(mat => 
+                    `<option value="${mat}" ${mat === asig.nombre ? 'selected' : ''}>${mat}</option>`
+                ).join('');
+
+                item.innerHTML = `
+                    <div class="flex flex-col sm:flex-row gap-3 items-center justify-between">
+                        <div class="w-full sm:w-1/2">
+                            <label class="block text-[10px] font-bold text-gray-500 uppercase">Materia</label>
+                            <select onchange="actualizarAsignatura(${index}, 'nombre', this.value)" class="w-full text-xs bg-white border border-gray-300 rounded-lg p-2 focus:outline-none">
+                                ${optionsHtml}
+                            </select>
+                        </div>
+                        <div class="w-full sm:w-1/4">
+                            <label class="block text-[10px] font-bold text-gray-500 uppercase">Ponderación</label>
+                            <select onchange="actualizarAsignatura(${index}, 'ponderacion', parseFloat(this.value))" class="w-full text-xs bg-white border border-gray-300 rounded-lg p-2 focus:outline-none">
+                                <option value="0.2" ${asig.ponderacion === 0.2 ? 'selected' : ''}>0.2 (Máxima)</option>
+                                <option value="0.1" ${asig.ponderacion === 0.1 ? 'selected' : ''}>0.1 (Estándar)</option>
+                            </select>
+                        </div>
+                        <div class="w-full sm:w-1/4 flex items-end gap-2">
+                            <div class="flex-grow">
+                                <label class="block text-[10px] font-bold text-gray-500 uppercase">Nota</label>
+                                <input type="number" step="0.1" min="0" max="10" value="${asig.nota}" 
+                                    oninput="actualizarAsignatura(${index}, 'nota', parseFloat(this.value))"
+                                    class="w-full text-xs bg-white border border-gray-300 rounded-lg p-2 focus:outline-none">
+                            </div>
+                            <button onclick="eliminarAsignatura(${index})" class="text-red-500 hover:text-red-700 p-2 text-sm font-bold" title="Eliminar">
+                                &times;
+                            </button>
+                        </div>
+                    </div>
+                    <!-- Slider interactivo para regular la nota fácilmente -->
+                    <div class="pt-1">
+                        <div class="flex justify-between text-[10px] text-gray-400 mb-1">
+                            <span>Regulador rápido (Nota: <strong class="text-indigo-600">${isNaN(asig.nota) ? 0 : asig.nota}</strong>)</span>
+                            <span>Aporta: <strong class="text-emerald-600">+${(isNaN(asig.nota) ? 0 : asig.nota * asig.ponderacion).toFixed(2)} pts</strong></span>
+                        </div>
+                        <input type="range" min="0" max="10" step="0.5" value="${isNaN(asig.nota) ? 0 : asig.nota}" 
+                            oninput="actualizarAsignatura(${index}, 'nota', parseFloat(this.value))"
+                            class="w-full accent-indigo-600 cursor-pointer">
+                    </div>
+                `;
+                listaAsignaturasDiv.appendChild(item);
+            });
+            calcular();
+        }
+
+        function agregarAsignatura() {
+            misAsignaturas.push({ nombre: "Biología", ponderacion: 0.2, nota: 5 });
+            renderizarAsignaturas();
+        }
+
+        function eliminarAsignatura(index) {
+            misAsignaturas.splice(index, 1);
+            renderizarAsignaturas();
+        }
+
+        function actualizarAsignatura(index, campo, valor) {
+            misAsignaturas[index][campo] = valor;
+            calcular();
+            // Si cambia la nota, refrescamos el slider/input visualmente sin redibujar todo para no perder el foco
+        }
+
+        function calcular() {
+            const nmb = parseFloat(nmbInput.value) || 0;
+            const faseGeneral = parseFloat(faseGeneralInput.value) || 0;
+            const notaCorteObjetivo = parseFloat(notaCorteObjetivoInput.value) || 0;
+
+            // 1. Nota de Acceso: 60% NMB + 40% Fase General
+            const notaAcceso = (nmb * 0.6) + (faseGeneral * 0.4);
+            resAcceso.textContent = notaAcceso.toFixed(3);
+
+            // 2. Fase Voluntaria: Filtrar aprobadas (>= 5) y calcular aportación (nota * ponderación)
+            let aportaciones = misAsignaturas.map(asig => {
+                const n = parseFloat(asig.nota) || 0;
+                const p = parseFloat(asig.ponderacion) || 0;
+                if (n >= 5) {
+                    return n * p;
+                }
+                return 0;
+            });
+
+            // Ordenar de mayor a menor aportación y coger las 2 mejores
+            aportaciones.sort((a, b) => b - a);
+            const mejoresVoluntarias = aportaciones.slice(0, 2);
+            const totalVoluntaria = mejoresVoluntarias.reduce((acc, val) => acc + val, 0);
+
+            // Tope de 4 puntos extra en voluntaria
+            const voluntariaFinal = Math.min(totalVoluntaria, 4.0);
+            resVoluntaria.textContent = `+${voluntariaFinal.toFixed(3)}`;
+
+            // 3. Nota Final de Admisión
+            const notaFinal = Math.min(notaAcceso + voluntariaFinal, 14.0);
+            resFinal.textContent = notaFinal.toFixed(3);
+
+            // 4. Lógica de comparativa con nota de corte objetivo
+            if (notaCorteObjetivo > 0) {
+                contenedorObjetivo.classList.remove('hidden');
+                const diferencia = notaFinal - notaCorteObjetivo;
+                if (diferencia >= 0) {
+                    contenedorObjetivo.className = "p-3 rounded-xl text-xs font-medium text-center bg-emerald-900/50 text-emerald-200 border border-emerald-700";
+                    contenedorObjetivo.innerHTML = `¡Lo alcanzarías! Tienes un margen a favor de <strong>+${diferencia.toFixed(3)} puntos</strong>.`;
+                } else {
+                    contenedorObjetivo.className = "p-3 rounded-xl text-xs font-medium text-center bg-rose-900/50 text-rose-200 border border-rose-700";
+                    contenedorObjetivo.innerHTML = `Te faltan <strong>${Math.abs(diferencia).toFixed(3)} puntos</strong> para llegar al corte objetivo. ¡Prueba a subir las notas en los deslizadores!`;
+                }
+            } else {
+                contenedorObjetivo.classList.add('hidden');
+            }
+        }
+
+        // Eventos en inputs principales
+        nmbInput.addEventListener('input', calcular);
+        faseGeneralInput.addEventListener('input', calcular);
+        notaCorteObjetivoInput.addEventListener('input', calcular);
+
+        // Inicializar al cargar
+        renderizarAsignaturas();
+    </script>
+</body>
+</html>
